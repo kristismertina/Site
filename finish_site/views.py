@@ -1,8 +1,12 @@
-from django.http import HttpResponse
+
 from django.shortcuts import render
+from .models import Task
 
 def index (request):
-    return render(request, "finish_site/index.html")
+    tasks = Task.objects.all()
+    return render(request, "finish_site/index.html", {'title': 'Главная страница сайта', 'tasks': tasks})
 
 def welcom (request):
-    return HttpResponse ("<h1>Вы зарегистрированы. Добро пожаловать!</h1>")
+    return render(request, "finish_site/welcom.html")   #, {'title': 'Главная страница сайта', 'tasks': tasks})
+
+
